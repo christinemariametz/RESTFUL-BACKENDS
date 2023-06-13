@@ -1,0 +1,44 @@
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+html, body {
+    height: 100%;
+}
+
+@media screen and (min-width: 768px) { 
+    html {
+    font-size: 20px;    
+}   
+}
+
+@media screen and (max-width: 992px) { 
+    html {
+    font-size: 24px;    
+}   
+}
+
+header {
+    background-color: rgb(250, 225, 178);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    margin: 3rem;
+    color: orange;
+}
+
+button {
+    background-color: rgb(255, 182, 45);
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    font-size: 1.5rem;
+    border: 1px solid rgb(255, 182, 45);
+    border-radius: 0.3rem;
+    color: white;
+}
