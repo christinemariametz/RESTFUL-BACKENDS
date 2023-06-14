@@ -7,7 +7,7 @@
 //- rendern
 //- fetch(en)
 //- btn eventListener (function aufrufen)
-//- function: Elemente "creieren" und ins html hinzufügen(appendChild)
+//- function: Elemente "creieren" und ins html hinzufügen(appendChild) -----> DIESE ENTFÄLLT, da ich den Inhalt gleich in meiner funktion abrufen kann.
 
 
 // 2. Funktion für den Button:
@@ -21,32 +21,18 @@ function fetchQuotes() {
         }  
 })
         .then((jsonData) => {
-        return createQuoteAndAuthor(jsonData.quote, jsonData.author);
+            document.getElementById("blockquotes").innerHTML = jsonData.quote;
+            document.getElementById("author").innerHTML = jsonData.author;
 })
         .catch(() => {
             console.error("API error");
         });
 }
 
-
 // 1. Button bauen
 const BtnGetQuote = document.getElementById("btnGetQuote");
 // Ich brauche eine funktion für den Button, siehe 2.
 BtnGetQuote.addEventListener("click", fetchQuotes);
-
-
-
-//3. 2 neue Elemente müssen kreiert werden (Quote & Author) und zum html hinzugefügt:
-function createQuoteAndAuthor(quoteValue, authorValue) {
-    document.getElementById("author").innerHTML = "";
-    document.getElementById("blockquotes").innerHTML = "";
-
-    const quote = document.createTextNode(`"`+ quoteValue + `"`);
-    const author = document.createTextNode("– " + authorValue);
-
-    document.getElementById("author").appendChild(author);
-    document.getElementById("blockquotes").appendChild(quote);
-}
 
 fetchQuotes();
 
