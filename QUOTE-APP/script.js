@@ -21,8 +21,8 @@ function fetchQuotes() {
         }  
 })
         .then((jsonData) => {
-            document.getElementById("blockquotes").innerHTML = jsonData.quote;
-            document.getElementById("author").innerHTML = jsonData.author;
+            document.getElementById("blockquotes").innerHTML = `"` + jsonData.quote + `"`;
+            document.getElementById("author").innerHTML = "– " + jsonData.author;
 })
         .catch(() => {
             console.error("API error");
