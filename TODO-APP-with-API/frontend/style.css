@@ -1,0 +1,35 @@
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+form {
+  display: flex;
+  flex-direction: row;
+  max-width: 40rem;
+}
+
+header {
+  margin-top: 5rem;
+}
+
+h1 {
+  font-size: 6rem;
+}
+
+@media screen and (max-width: 358px) {
+  #nameField {
+    font-size: 1rem;
+  }
+}
