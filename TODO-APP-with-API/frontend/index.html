@@ -12,10 +12,7 @@
     />
 
     <!-- CSS Reset -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css"
-    />
+    <link rel="stylesheet" href="node_modules/milligram/dist/milligram.css" />
 
     <!-- Milligram CSS -->
     <link rel="stylesheet" href="node_modules/milligram/dist/milligram.css" />
@@ -31,13 +28,34 @@
     </div>
     <main>
       <div class="container">
+        <div class="selectContainer"></div>
+        <label for="selectHeading" class="pln">Select Todos</label>
+        <select id="todoRangeField">
+          <option name="filter" id="selectInputAll">All</option>
+          <option name="filter" id="selectInputDone">Done</option>
+          <option name="filter" id="selectInputOpen">Open</option>
+        </select>
+        <input
+          class="button-primary"
+          id="remove"
+          type="button"
+          value="Remove done todos"
+        />
+      </div>
+      <div class="container">
         <form>
           <input
             type="text"
             placeholder="What's your new todo?"
             id="nameField"
-          /><input class="button-primary" type="submit" value="Add todo" />
+          /><input
+            class="button-primary"
+            type="button"
+            id="add"
+            value="Add todo"
+          />
         </form>
+        <ul id="ulList"></ul>
       </div>
     </main>
 

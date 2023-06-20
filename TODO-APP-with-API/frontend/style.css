@@ -8,10 +8,22 @@ html {
   height: 100%;
 }
 
-body {
+header {
+  margin-top: 5rem;
+}
+
+h1 {
+  font-size: 6rem;
+}
+
+main {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+#todoRangeField {
+  max-width: 10rem;
 }
 
 form {
@@ -20,12 +32,12 @@ form {
   max-width: 40rem;
 }
 
-header {
-  margin-top: 5rem;
+label {
+  margin-top: 4rem;
 }
 
-h1 {
-  font-size: 6rem;
+select {
+  margin-bottom: 4rem;
 }
 
 @media screen and (max-width: 358px) {
