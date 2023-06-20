@@ -45,16 +45,9 @@ function renderTodos() {
         if (todo.done === true) {
           todoText.style.textDecoration = "line-through";
         }
-
         checkbox.addEventListener("change", (event) => {
           console.log(event.target.checked);
-          if (event.target.checked) {
-            todoText.style.textDecoration = "line-through";
-            todo.done = true;
-          } else {
-            todoText.style.textDecoration = "none";
-            todo.done = false;
-          }
+          updateTodo(todo.id, event.target.checked).then(renderTodos);
         });
       }
     });
@@ -83,96 +76,20 @@ addToDoBtn.addEventListener("click", () => {
       .then((newTodoFromApi) => {
         console.log(newTodoFromApi);
         renderTodos();
-        // WAS MACH ICH DAMIT??
       });
   }
 });
 
 // Todo updaten === PUT bzw. PATCH!!
 function updateTodo(id, done) {
-  const updatedTodo = { id: id, done: done };
-  fetch(
-    "http://localhost:4730/todos", //+todo was ich updaten will
-    {
-      method: "PUT",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify(updatedTodo),
-    }
-  )
+  const updatedTodo = { done: done };
+  fetch(`http://localhost:4730/todos/${id}`, {
+    method: "PATCH",
+    headers: { "Content-type": "application/json" },
+    body: JSON.stringify(updatedTodo),
+  })
     .then((response) => response.json())
     .then((updatedTodoFromApi) => {
       console.log(updatedTodoFromApi);
-
-      checkbox.addEventListener("change", (event) => {
-        console.log(event.target.checked);
-        if (event.target.checked) {
-          todo.done = true;
-        } else {
-          todo.done = false;
-        }
-      });
     });
 }
-
-/*
-      // meine Liste soll anfangs immer leer sein.
-      
-      
-      const ulList = document.getElementById("ulList");
-      ulList.innerText = "";
-      // forEach Todo in der Liste soll das gemacht werden:
-      Object.keys(state).forEach((todo) => {
-        // wie greife ich auf die einzelnen todos zu?
-        const Newtodo = state[todo];
-        // todoListe bauen
-        const newLi = document.createElement("li");
-        // Checkbox bauen
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.checked = todo.done;
-        // description der Todos bauen
-        const todoText = document.createElement("p");
-        todoText.innerHTML = todo.description;
-        // todoList, Checkbox und Text hinzufügen
-        ulList.appendChild(newLi);
-        newLi.appendChild(checkbox);
-        newLi.append(todoText);
-        });
-      });
-    });
-}
-renderTodos();
-
-
-
-
-// ### Filtering Todos
-// Wenn ich auf Open klicke...
-selectInputOpen.addEventListener("change", () => {
-  renderTodos(true, false);
-});
-// Wenn ich auf Done klicke...
-selectInputDone.addEventListener("change", () => {
-  renderTodos(false, true);
-});
-// Wenn ich auf All klicke...
-selectInputAll.addEventListener("change", () => {
-  renderTodos(false, false);
-});
-
-
-// ### Remove done Todos
-removeBtn.addEventListener("click", () => {
-  let newState = {};
-  Object.keys(state).forEach((id) => {
-    const todo = state[id];
-
-    if (todo.done === false) {
-      newState[id] = todo;
-    }
-  });
-  state = newState;
-  // state updaten:
-  renderTodos();
-});
-*/
